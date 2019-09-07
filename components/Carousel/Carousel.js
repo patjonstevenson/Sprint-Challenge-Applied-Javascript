@@ -49,26 +49,30 @@ function newCarousel() {
 
   // Add event listeners to buttons
   rightButton.addEventListener("click", event => {
+    // Make current image disappear
     images[current].style.display = "none";
+    // Increment counter
     current++;
-    if (current < 0) {
-      current = images.length - 1 + current;
-    }
+    // Check to see if current has exceeded bounds
+    // If so, set it to the corresponding index
     if (current > images.length - 1) {
-      current = current - images.length;
+      current = current % images.length;
     }
+    // Make next image appear
     images[current].style.display = "block";
   });
 
   leftButton.addEventListener("click", event => {
+    // Make current image disappear
     images[current].style.display = "none";
+    // Increment counter
     current--;
+    // Check to see if current has gone below zero
+    // If so, set it to the corresponding index
     if (current < 0) {
       current = images.length + current;
     }
-    if (current > images.length - 1) {
-      current = current - (images.length - 1);
-    }
+    // Make next image appear
     images[current].style.display = "block";
   });
 
