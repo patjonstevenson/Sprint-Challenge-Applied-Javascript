@@ -32,7 +32,7 @@ axios
       // Iterate over articles in each topic
       response.data.articles[topic].forEach(art => {
         // Create new card component and add to cards container
-        cardsContainer.appendChild(newCard(art));
+        cardsContainer.appendChild(newCard(art, topic));
       });
     });
   })
@@ -40,7 +40,7 @@ axios
 
 // Card component function
 // Takes art: object
-function newCard(art) {
+function newCard(art, topic) {
   // Create elements
   const card = document.createElement("div");
   const headline = document.createElement("div");
@@ -59,6 +59,9 @@ function newCard(art) {
   headline.textContent = art.headline;
   image.src = art.authorPhoto;
   byline.textContent = `By ${art.authorName}`;
+
+  // Set topic
+  card.setAttribute("topic", topic);
 
   // Append children
   imgContainer.appendChild(image);
